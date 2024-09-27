@@ -53,6 +53,7 @@ class BookDetailFragment : Fragment() {
         getData()
         initView()
         openBookReadingPage()
+        initVisibilityOfReadButton()
     }
 
 
@@ -95,6 +96,14 @@ class BookDetailFragment : Fragment() {
         binding.subjectValue.text = bookDetails.subjects?.joinToString()
         binding.languageValue.text = bookDetails.languages?.first().toString()
         binding.downloadCount.text = bookDetails.downloadCount.toString()
+    }
+
+    private fun initVisibilityOfReadButton() {
+        if (bookDetails.formats?.eBook != null) {
+            binding.startReadingButton.visibility = View.VISIBLE
+        } else {
+            binding.startReadingButton.visibility = View.GONE
+        }
     }
 
     private fun openBookReadingPage() {
