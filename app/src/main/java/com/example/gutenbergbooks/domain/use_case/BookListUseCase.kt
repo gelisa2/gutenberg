@@ -10,20 +10,16 @@ class BookListUseCase @Inject constructor(
     private val repository: BookRepository
 ) {
 
-    suspend operator fun invoke() = flow {
+    suspend operator fun invoke(page: Int) = flow {
         emit(Resource.Loading())
-//        if (!networkUtils.isInternetAvailable()) {
-//            val dbData = repository.getBookListFromDb
-//            if (dbdata != null) {
-//                emit(Resource.Success(dbdata))
-//            } else {
-//            emit(Resource.Error("there is no data in db"))
-//        }
-//            return@flow
-//        }
 
-        emit(Resource.Success(repository.getBookList().data))
+        val data = repository.getBookList(page)
 
+        if (data.data?.results?.isNotEmpty() == true) {
+            emit(Resource.Success(data.data))
+        } else {
+            emit(Resource.Error(data.message.toString()))
+        }
     }
 
 }

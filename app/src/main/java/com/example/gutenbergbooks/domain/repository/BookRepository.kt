@@ -7,6 +7,5 @@ import com.example.gutenbergbooks.domain.model.BookListResponse
 
 
 interface BookRepository {
-    suspend fun getBookList(): Resource<BookListResponse>
-    suspend fun getBookDetails()
+    suspend fun getBookList(page: Int): Resource<BookListResponse>
 }

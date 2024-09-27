@@ -10,11 +10,12 @@ import kotlinx.parcelize.Parcelize
 data class BookListResponse(
     var id: Long,
     val title: String,
-    val authors: List<AuthorsDTO>,
+    val authors: List<AuthorsDTO>?,
     val subjects: List<String>?,
     val bookshelves: List<String>?,
     val languages: List<String>?,
-    val formats: BookFormatDTO
+    val formats: BookFormatDTO?,
+    val downloadCount: Long?
 ): Parcelable
 
 fun BookListResponse.toEntity(): BookListDTO {
@@ -25,6 +26,7 @@ fun BookListResponse.toEntity(): BookListDTO {
         subjects = subjects,
         bookShelves = bookshelves,
         languages = languages,
-        formats = formats
+        formats = formats,
+        downloadCount = downloadCount
     )
 }

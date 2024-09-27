@@ -10,25 +10,31 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#123123"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bookImage"
+    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="26dp"
-        android:background="@color/black"
-        android:scaleType="fitXY"
-        android:translationZ="2dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        android:translationZ="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.25" />
+        app:layout_constraintWidth_percent="0.25" >
+
+        <ImageView
+            android:id="@+id/bookImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/layoutGuideline"
@@ -52,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Book Info"
+            android:text="@string/book_info"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -85,10 +91,10 @@
                     app:srcCompat="@drawable/ic_globe_icon" />
 
                 <TextView
+                    android:id="@+id/languageValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:text="English"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -111,12 +117,12 @@
                     app:srcCompat="@drawable/ic_download_icon" />
 
                 <TextView
+                    android:id="@+id/downloadCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="10,000"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -147,7 +153,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:text="@string/title"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -157,7 +163,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="satauri"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -165,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Authors"
+                    android:text="@string/authors"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -175,7 +180,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="satauri"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -183,7 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Subjects"
+                    android:text="@string/subjects"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -193,7 +197,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="satauri"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -201,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="bookshelves"
+                    android:text="@string/bookshelves"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -211,7 +214,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="satauri"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -236,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginVertical="14dp"
-                android:text="Start Reading"
+                android:text="@string/start_reading"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 

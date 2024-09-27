@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class BookFormatDTO(
     @SerializedName("text/html")
-    val eBook: String,
+    val eBook: String?,
     @SerializedName("image/jpeg")
-    val bookCover: String
+    val bookCover: String?
 ): Parcelable

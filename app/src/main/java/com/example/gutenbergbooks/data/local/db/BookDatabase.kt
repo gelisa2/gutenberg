@@ -8,7 +8,7 @@ import com.example.gutenbergbooks.data.local.Converter
 import com.example.gutenbergbooks.data.local.dao.BooksDao
 import com.example.gutenbergbooks.data.remote.dto.BookListDTO
 
-@Database(entities = [BookListDTO::class], version = 1, exportSchema = false)
+@Database(entities = [BookListDTO::class], version = 3, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class BookDatabase: RoomDatabase() {
     abstract fun bookDao(): BooksDao

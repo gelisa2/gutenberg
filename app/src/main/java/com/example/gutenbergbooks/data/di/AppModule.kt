@@ -62,7 +62,7 @@ object AppModule {
             appContext,
             BookDatabase::class.java,
             "book_database"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     @Provides
@@ -72,7 +72,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepository(bookApi: BookApi, booksDao: BooksDao, networkUtils: NetworkUtils): BookRepository {
+    fun provideRepository(
+        bookApi: BookApi,
+        booksDao: BooksDao,
+        networkUtils: NetworkUtils
+    ): BookRepository {
         return BookRepositoryImpl(bookApi, booksDao, networkUtils)
     }
 

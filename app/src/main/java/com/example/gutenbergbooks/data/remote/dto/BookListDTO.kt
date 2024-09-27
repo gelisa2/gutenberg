@@ -10,12 +10,14 @@ import com.google.gson.annotations.SerializedName
 data class BookListDTO(
     @PrimaryKey val id: Long,
     val title: String,
-    val authors: List<AuthorsDTO>,
+    val authors: List<AuthorsDTO>?,
     val subjects: List<String>?,
     @SerializedName("bookshelves")
     val bookShelves: List<String>?,
     val languages: List<String>?,
-    val formats: BookFormatDTO
+    val formats: BookFormatDTO?,
+    @SerializedName("download_count")
+    val downloadCount: Long? = null
 
 )
 
@@ -32,7 +34,8 @@ fun BaseResponse<BookListDTO>.toDomain(): BaseResponse<BookListResponse> {
             subjects = it.subjects,
             bookshelves = it.bookShelves,
             languages = it.languages,
-            formats = it.formats
+            formats = it.formats,
+            downloadCount = it.downloadCount
         ) }
     )
 }

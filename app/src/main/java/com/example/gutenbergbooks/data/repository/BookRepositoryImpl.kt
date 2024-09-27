@@ -5,7 +5,6 @@ import com.example.gutenbergbooks.data.local.dao.BooksDao
 import com.example.gutenbergbooks.data.local.safeDbCall
 import com.example.gutenbergbooks.data.remote.BaseResponse
 import com.example.gutenbergbooks.data.remote.BookApi
-import com.example.gutenbergbooks.data.remote.dto.BookListDTO
 import com.example.gutenbergbooks.data.remote.dto.toDomain
 import com.example.gutenbergbooks.data.remote.safeApiCall
 import com.example.gutenbergbooks.domain.model.BookListResponse
@@ -22,11 +21,11 @@ class BookRepositoryImpl @Inject constructor(
     private val networkUtils: NetworkUtils
 ): BookRepository {
 
-    override suspend fun getBookList(): Resource<BookListResponse> {
+    override suspend fun getBookList(page: Int): Resource<BookListResponse> {
 
         return if (networkUtils.isInternetAvailable()) {
             val apiResponse = safeApiCall {
-                bookApi.getBookList(5).toDomain()
+                bookApi.getBookList(page).toDomain()
             }
 
             if (apiResponse is Resource.Success) {
@@ -34,24 +33,13 @@ class BookRepositoryImpl @Inject constructor(
             }
             apiResponse
         } else {
+            val pageSize = 32
+            val offset = (page - 1) * pageSize
             val dbResult = safeDbCall {
-                BaseResponse(results = booksDao.getAllBooks()).toDomain()
-//                booksDao.getAllBooks().toDomain()
+                BaseResponse(results = booksDao.getAllBooks(pageSize, offset)).toDomain()
             }
-            return dbResult
-//            val cachedData = booksDao.getAllBooks()
-//            if (cachedData.isNotEmpty()) {
-//                return cachedData
-////                Resource.Success(BaseResponse(
-////                    count = cachedData.size.toLong(),
-////                    results = cachedData.map { it.toDomain() }.toCollection(ArrayList())
-////                ))
-//            }
-//            Resource.Error("")
+            dbResult
         }
 
-    }
-
-    override suspend fun getBookDetails() {
     }
 }
